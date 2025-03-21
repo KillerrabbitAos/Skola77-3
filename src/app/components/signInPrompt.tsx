@@ -8,7 +8,7 @@ export function SignInPrompt() {
                 onClick={() => signIn()}
                 className="px-6 py-2 bg-blue-500 text-white cursor-pointer rounded hover:bg-blue-600 transition duration-200"
             >
-                Sign in with google
+                Sign in
             </button>
         </div>
     );
