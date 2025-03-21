@@ -21,7 +21,7 @@ const ThemeSwitcher = () => {
 
     return (
         <div className="flex items-center space-x-4">
-            <span className="text-primary-green">Current Theme:</span>
+            <span className="text-primary-green">Theme:</span>
             <select
                 value={theme}
                 onChange={onThemeSelect}
