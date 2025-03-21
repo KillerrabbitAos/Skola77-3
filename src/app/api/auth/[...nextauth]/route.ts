@@ -13,29 +13,33 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async session({ session, token }) {
-            console.log("Session callback:", { session, token });
+        async jwt({ token, user, account }) {
+            console.log("🔹 JWT callback BEFORE:", { token, user, account });
 
-            if (session.user) {
-                if (typeof token?.id === "string") {
-                    session.user.id = token.id;
-                } else {
-                    console.error("Token id is not a string or is undefined.");
-                }
-            }
-            return session;
-        },
-        async jwt({ token, user }) {
-            console.log("JWT callback:", { token, user });
-
-            if (user) {
-                token.id = user.id;
-            } else {
-                console.error("User id is not a string or is undefined.");
+            if (account && user) {
+                token.id = user.id ?? account.providerAccountId;
+                token.email = user.email;
             }
 
+            console.log("🔹 JWT callback AFTER:", token);
             return token;
         },
+        async session({ session, token }) {
+            console.log("🔹 Session callback BEFORE:", { session, token });
+
+            if (!token || !token.id) {
+                console.error("❌ Token is missing in session callback!");
+                return session;
+            }
+
+            session.user.id = String(token.id);
+
+            console.log("🔹 Session callback AFTER:", session);
+            return session;
+        }
+    },
+    session: {
+        strategy: "jwt",
     },
 };
 

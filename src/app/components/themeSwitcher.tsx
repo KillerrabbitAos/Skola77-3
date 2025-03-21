@@ -1,23 +1,50 @@
 'use client';
 
-import {useState, useEffect} from 'react';
-import {useTheme} from 'next-themes';
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
 
 const ThemeSwitcher = () => {
     const [mounted, setMounted] = useState(false);
-    const {theme, setTheme} = useTheme();
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => {
         setMounted(true);
-    }, []);
+
+        const loadTheme = async () => {
+            const res = await fetch('/api/theme');
+            const data = await res.json();
+            if (data.theme) {
+                setTheme(data.theme);
+            }
+        };
+
+        loadTheme();
+    }, [setTheme]);
+
+    const onThemeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const newTheme = e.target.value;
+        setTheme(newTheme);
+
+        try {
+            const res = await fetch('/api/theme', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ theme: newTheme }),
+            });
+
+            if (!res.ok) {
+                console.error('Failed to update theme:', await res.text());
+            }
+        } catch (error) {
+            console.error('Error in PUT request:', error);
+        }
+    };
 
     if (!mounted) {
         return null;
     }
-
-    const onThemeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setTheme(e.target.value);
-    };
 
     return (
         <div className="flex items-center space-x-4">

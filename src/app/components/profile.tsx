@@ -5,7 +5,11 @@ export function Profile(props: {
         email?: string | null | undefined;
         image?: string | null | undefined
     }
+
 }) {
-    return <img className={"border-black dark:border-white border-3 rounded-full size-14 m-2  "}
+    function redirectToSettings(){
+        window.location.href = "/settings";
+    }
+    return <img onClick={redirectToSettings} className={"border-black dark:border-white border-3 rounded-full size-14 m-2  "}
                 src={props.user?.image as string} alt=":)"/>;
 }
