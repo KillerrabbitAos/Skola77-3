@@ -15,7 +15,7 @@ const ThemeSwitcher = () => {
         return null;
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const onThemeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setTheme(e.target.value);
     };
 
@@ -24,7 +24,7 @@ const ThemeSwitcher = () => {
             <span className="text-primary-green">Current Theme:</span>
             <select
                 value={theme}
-                onChange={handleChange}
+                onChange={onThemeSelect}
                 className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
             >
                 <option value="light">Light Mode</option>
