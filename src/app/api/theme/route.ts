@@ -10,7 +10,7 @@ async function upsertUserTheme(userId: string, theme: string): Promise<boolean> 
         await prisma.userPreference.upsert({
             where: { userId: userId },
             update: { theme: theme },
-            create: { userId: userId, theme: theme }, // Create a new record if it doesn't exist
+            create: { userId: userId, theme: theme },
         });
         return true;
     } catch (error) {

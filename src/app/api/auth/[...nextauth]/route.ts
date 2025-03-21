@@ -14,27 +14,27 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async jwt({ token, user, account }) {
-            console.log("🔹 JWT callback BEFORE:", { token, user, account });
+            console.log("JWT callback BEFORE:", { token, user, account });
 
             if (account && user) {
                 token.id = user.id ?? account.providerAccountId;
                 token.email = user.email;
             }
 
-            console.log("🔹 JWT callback AFTER:", token);
+            console.log("JWT callback AFTER:", token);
             return token;
         },
         async session({ session, token }) {
-            console.log("🔹 Session callback BEFORE:", { session, token });
+            console.log("Session callback BEFORE:", { session, token });
 
             if (!token || !token.id) {
-                console.error("❌ Token is missing in session callback!");
+                console.error("Token is missing in session callback!");
                 return session;
             }
 
             session.user.id = String(token.id);
 
-            console.log("🔹 Session callback AFTER:", session);
+            console.log("Session callback AFTER:", session);
             return session;
         }
     },
