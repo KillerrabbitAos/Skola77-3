@@ -1,5 +1,6 @@
-import { Providers } from "./providers";
+import {Providers} from "./providers";
 import "./globals.css"
+
 export default function RootLayout({
                                        children,
                                    }: {
@@ -8,7 +9,7 @@ export default function RootLayout({
     return (
         <html lang='en' suppressHydrationWarning>
         <head>
-            <title>Skola77-3 3</title>
+            <title>Skola77-3</title>
         </head>
         <body>
         <Providers>{children}</Providers>
