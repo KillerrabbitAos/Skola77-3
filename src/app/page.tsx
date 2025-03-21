@@ -1,27 +1,21 @@
 "use client";
 
-import {useSession, signIn, signOut} from "next-auth/react";
+import {useSession} from "next-auth/react";
+import {Profile} from "@/app/components/profile";
+import {SignInPrompt} from "@/app/components/signInPrompt";
 
-export default function Dashboard() {
+export default function Home() {
     const {data: session} = useSession();
+    const currentUser = session?.user;
 
-    if (!session) {
-        return (
-            <div>
-                <p>You are not signed in.</p>
-                <button onClick={() => signIn()}>Sign In</button>
-            </div>
-        );
+    if (!currentUser) {
+        return SignInPrompt();
     }
 
     return (
-        <div className="flex">
-            <div>
-                <a>Welcome, {session.user?.name}!</a>
-                <button onClick={() => signOut()}>Sign Out</button>
-            </div>
-            <div>
-                <img src={session.user?.image as string} alt={session.user?.name as string}/>
+        <div className="grid grid-cols-1">
+            <div className="flex justify-end">
+                <Profile user={currentUser}/>
             </div>
         </div>
     );
