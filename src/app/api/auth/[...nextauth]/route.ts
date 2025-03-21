@@ -1,22 +1,10 @@
-import NextAuth, { NextAuthOptions, DefaultSession, Session } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
-import { JWT } from "next-auth/jwt";
-
-declare module "next-auth" {
-    interface Session {
-        user: {
-            id: string;
-        } & DefaultSession["user"];
-    }
-
-    interface User {
-        id: string;
-    }
-}
 
 export const authOptions: NextAuthOptions = {
+    debug: true,
     adapter: PrismaAdapter(prisma),
     providers: [
         GoogleProvider({
@@ -25,16 +13,27 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async session({ session, token }: { session: Session; token: JWT }) {
+        async session({ session, token }) {
+            console.log("Session callback:", { session, token });
+
             if (session.user) {
-                session.user.id = token.id as string;
+                if (typeof token?.id === "string") {
+                    session.user.id = token.id;
+                } else {
+                    console.error("Token id is not a string or is undefined.");
+                }
             }
             return session;
         },
         async jwt({ token, user }) {
+            console.log("JWT callback:", { token, user });
+
             if (user) {
                 token.id = user.id;
+            } else {
+                console.error("User id is not a string or is undefined.");
             }
+
             return token;
         },
     },

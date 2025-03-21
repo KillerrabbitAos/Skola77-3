@@ -1,9 +1,9 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import {useSession, signIn, signOut} from "next-auth/react";
 
 export default function Dashboard() {
-    const { data: session } = useSession();
+    const {data: session} = useSession();
 
     if (!session) {
         return (
@@ -15,9 +15,14 @@ export default function Dashboard() {
     }
 
     return (
-        <div>
-            <p>Welcome, {session.user?.name}!</p>
-            <button onClick={() => signOut()}>Sign Out</button>
+        <div className="flex">
+            <div>
+                <a>Welcome, {session.user?.name}!</a>
+                <button onClick={() => signOut()}>Sign Out</button>
+            </div>
+            <div>
+                <img src={session.user?.image as string} alt={session.user?.name as string}/>
+            </div>
         </div>
     );
 }
