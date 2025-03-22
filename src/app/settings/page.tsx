@@ -22,7 +22,7 @@ const Settings: React.FC = () => {
     return (
         <div>
             <div className="p-4">
-                <h2 className="text-xl font-semibold mb-2">Preferences</h2>
+                <h2 className="text-xl font-semibold mb-4">Preferences</h2>
                 <ThemeSwitcher/>
             </div>
         </div>
