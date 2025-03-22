@@ -7,12 +7,12 @@ export function SmallProfilePicture(props: {
     }
 
 }) {
-    function redirectToSettings() {
-        window.location.href = "/settings";
+    function redirectToProfile() {
+        window.location.href = "/profile";
     }
 
     // eslint-disable-next-line @next/next/no-img-element
-    return <img onClick={redirectToSettings}
+    return <img onClick={redirectToProfile}
                 className="light:border-[#121212] dark:border-lightgray cursor-pointer border-2 rounded-full size-14 m-2"
                 src={props.user?.image as string} alt=":)"/>;
 }
