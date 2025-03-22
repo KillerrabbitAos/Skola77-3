@@ -3,9 +3,10 @@ import {Profile} from "@/app/components/profile";
 import {useSession} from "next-auth/react";
 import {SignInPrompt} from "@/app/components/signInPrompt";
 import {LeftArrowButton} from "@/app/components/leftArrowButton";
+import {SearchField} from "@/app/components/searchField";
 
-function NavHeadingProvider({children}: { children: React.ReactNode }) {
-    const {data: session, status} = useSession();
+function NavHeadingProvider({ children }: { children: React.ReactNode }) {
+    const { data: session, status } = useSession();
     const [loading, setLoading] = useState(true);
     const user = session?.user;
 
@@ -16,16 +17,20 @@ function NavHeadingProvider({children}: { children: React.ReactNode }) {
     }, [status]);
 
     if (loading) return null;
-    if (!user) return <SignInPrompt/>;
+    if (!user) return <SignInPrompt />;
 
-    return (<>
-            <div className="grid grid-cols-2 h-20">
+    return (
+        <>
+            <div className="grid grid-cols-5 h-20">
                 <div className="flex items-center justify-start">
                     <LeftArrowButton onClick={() => {
                         window.location.replace("/")
                     }}/>
                 </div>
-                <div className="flex justify-end">
+                <div className="flex col-span-3 items-center justify-center">
+                    <SearchField/>
+                </div>
+                <div className="flex justify-end items-center">
                     <Profile user={user}/>
                 </div>
             </div>
