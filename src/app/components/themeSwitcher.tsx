@@ -52,7 +52,7 @@ const ThemeSwitcher = () => {
             <select
                 value={theme}
                 onChange={onThemeSelect}
-                className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded"
+                className="bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-4 py-2 rounded cursor-pointer"
             >
                 <option value="light">Light Mode</option>
                 <option value="dark">Dark Mode</option>
