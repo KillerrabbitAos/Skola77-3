@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Profile} from "@/app/components/profile";
+import {SmallProfilePicture} from "@/app/components/smallProfilePicture";
 import {useSession} from "next-auth/react";
 import {SignInPrompt} from "@/app/components/signInPrompt";
 import {LeftArrowButton} from "@/app/components/leftArrowButton";
@@ -31,7 +31,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                     <SearchField/>
                 </div>
                 <div className="flex justify-end items-center">
-                    <Profile user={user}/>
+                    <SmallProfilePicture user={user}/>
                 </div>
             </div>
             {children}
