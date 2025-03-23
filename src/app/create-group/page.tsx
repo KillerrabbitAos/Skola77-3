@@ -8,12 +8,14 @@ function Page() {
 
     async function createGroup() {
         try {
-            const response = await fetch('/api/group', {
+            const response = await fetch('/api/groups', {
                 method: 'POST',
-                body: groupName as string,
+                body: JSON.stringify({name: groupName}),
             });
             const data = await response.json();
-            window.location.replace('/group?id=' + data + '')
+            if (!data || typeof data !== "string") return;
+            const {id} = JSON.parse(data);
+            window.location.replace('/group?id=' + String(id) + '')
         } catch (e) {
             console.error(e)
         }
