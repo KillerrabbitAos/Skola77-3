@@ -26,7 +26,7 @@ function Page() {
     useEffect(() => {
         if (!id) return;
         fetchGroup();
-    }, [id]); // ✅ Only depend on `id`
+    }, [id]);
 
     if (!id) return null;
     if (!group) return null;

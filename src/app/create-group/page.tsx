@@ -5,6 +5,7 @@ import React, {useEffect, useState} from 'react';
 function Page() {
     const [mounted, setMounted] = useState(false);
     const [groupName, setGroupName] = useState('');
+    const [height, setHeight] = useState(window.innerHeight);
 
     async function createGroup() {
         try {
@@ -24,13 +25,27 @@ function Page() {
     useEffect(() => {
         setMounted(true);
     }, []);
+    useEffect(() => {
+
+
+        const updateHeight = () => setHeight(window.innerHeight);
+        window.addEventListener("resize", updateHeight);
+        return () => window.removeEventListener("resize", updateHeight);
+    }, []);
+
     if (!mounted) return null;
+
     return (
-        <div>
-            <input type="text" placeholder="Group name" onChange={(e) => setGroupName(e.target.value)}/>
-
-            <button onClick={createGroup} className={"cursor-pointer"}>Create</button>
-
+        <div style={{position: "absolute", top: height / 2, left: "50%", transform: "translate(-50%, -50%)"}}>
+            <div
+                className="flex flex-col items-center gap-2 dark:bg-gray-700 light:bg-[lightgray] p-4 rounded-2xl border-1 ">
+                <input type="text" placeholder="Group name" onChange={(e) => setGroupName(e.target.value)}
+                       className="p-2 border rounded"
+                       style={{outline: 'none'}}/>
+                <button onClick={createGroup}
+                        className="cursor-pointer p-2 border-1 dark:text-white light:text-black rounded">Create
+                </button>
+            </div>
         </div>
     );
 }
