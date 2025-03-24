@@ -58,7 +58,7 @@ function Page() {
                     ))}
             </div>
             <button onClick={redirectToGroupCreator}
-                    className="px-4 py-2 bg-blue-300 text-black rounded hover:bg-blue-400">
+                    className="px-4 py-2 bg-gray-600 text-gray-200 rounded hover:bg-blue-400">
                 Create group
             </button>
         </div>
