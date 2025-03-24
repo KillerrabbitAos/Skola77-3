@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 html,
 body {
@@ -6,8 +7,8 @@ body {
     background: #fff;
 }
 
-.dark,
-.dark body {
+[data-theme='dark'],
+[data-theme='dark'] body {
     color: lightgray;
     background: #121212;
 }

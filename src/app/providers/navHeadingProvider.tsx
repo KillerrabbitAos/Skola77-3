@@ -21,7 +21,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <>
-            <div className="grid grid-cols-5 h-20 dark:bg-green-500">
+            <div className="grid grid-cols-5 h-20 ">
                 <div className="flex items-center justify-start">
                     <LeftArrowButton onClick={() => {
                         window.location.replace("/")

@@ -1,9 +1,8 @@
-// postcss.config.mjs
-const config = {
-  plugins: {
-    tailwindcss: {},    // Use Tailwind CSS directly
-    autoprefixer: {},   // Ensure autoprefixing works for older browsers
-  },
-};
+import tailwindConfig from './tailwind.config.js'; // Import the TypeScript config
 
-export default config;
+export default {
+    plugins: {
+        '@tailwindcss/postcss': tailwindConfig, // Use the imported Tailwind config
+        autoprefixer: {},
+    },
+};
