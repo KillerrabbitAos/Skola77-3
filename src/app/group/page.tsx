@@ -9,19 +9,7 @@ function Page() {
     const id = searchParams.get('id');
     const [group, setGroup] = useState<Group | null>(null);
 
-    async function fetchGroup() {
-        try {
-            const response = await fetch(`/api/groups?id=${id}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch group');
-            }
-            const data = await response.json();
-            console.log({data});
-            setGroup(data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
+
 
     async function updateGroup(updatedGroup: Group) {
         try {
@@ -33,7 +21,8 @@ function Page() {
                 body: JSON.stringify(updatedGroup),
             });
             if (!response.ok) {
-                throw new Error('Failed to update group');
+                console.error('Failed to update group');
+                return;
             }
         } catch (error) {
             console.error(error);
@@ -41,8 +30,22 @@ function Page() {
     }
 
     useEffect(() => {
+        async function fetchGroup() {
+            try {
+                const response = await fetch(`/api/groups?id=${id}`);
+                if (!response.ok) {
+                    console.error('Failed to fetch group');
+                    return;
+                }
+                const data = await response.json();
+                console.log({data});
+                setGroup(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
         if (!id) return;
-        fetchGroup();
+        fetchGroup().catch(console.error);
     }, [id]);
 
     if (!id) return null;
@@ -59,7 +62,7 @@ function Page() {
                 onChange={(e) => {
                     const updatedGroup = {...group, name: e.target.value};
                     setGroup(updatedGroup);
-                    updateGroup(updatedGroup);
+                    updateGroup(updatedGroup).catch(console.error);
                 }}
             />
             <ul>
