@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:migrate": "ts-node --transpileOnly ./node_modules/sequelize-cli/lib/cli.js db:migrate",
-    "db:seed": "ts-node --transpileOnly ./node_modules/sequelize-cli/lib/cli.js db:seed"
+    "deploy": "next build && npx prisma migrate deploy && next start"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
