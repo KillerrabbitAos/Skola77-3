@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import {Group} from "@prisma/client";
+import GroupCard from "@/components/groupCard";
 
 function Page() {
     const [mounted, setMounted] = useState(false);
@@ -35,29 +36,31 @@ function Page() {
     }, []);
 
     if (!mounted) return null;
-    return (
-        <div>
-            <h1>Groups</h1>
 
-            <button onClick={redirectToGroupCreator} className={"cursor-pointer"}>Create new Group</button>
-            {groups.length > 0 && groups.map((group) => (
-                <div key={group.id}>
-                    <h2>{group.name}</h2>
-                    <button
-                        onClick={() => window.location.replace(`/group?id=${group.id}`)}
-                        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                        Edit
-                    </button>
-                    <button
-                        onClick={() => deleteGroup(group)}
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 ml-2"
-                    >
-                        Delete
-                    </button>
-                    <p>Members: {group.members.length}</p>
-                </div>
-            ))}
+    const groupsInAlphabeticalOrder = groups.sort((a, b) => a.name.localeCompare(b.name));
+    return (
+        <div className={"ml-2"}>
+            <h1 className={"text-3xl mb-3"}>Groups</h1>
+
+            <div
+                className={`flex flex-wrap gap-4 ${
+                    groupsInAlphabeticalOrder.length % 2 === 0 ? 'justify-center' : 'justify-start'
+                }`}
+            >
+                {groupsInAlphabeticalOrder.length > 0 &&
+                    groupsInAlphabeticalOrder.map((group) => (
+                        <GroupCard
+                            key={group.id}
+                            group={group}
+                            onEdit={() => window.location.replace(`/group?id=${group.id}`)}
+                            onDelete={() => deleteGroup(group)}
+                        />
+                    ))}
+            </div>
+            <button onClick={redirectToGroupCreator}
+                    className="px-4 py-2 bg-blue-300 text-black rounded hover:bg-blue-400">
+                Create group
+            </button>
         </div>
     );
 }

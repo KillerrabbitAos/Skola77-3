@@ -10,7 +10,6 @@ function Page() {
     const [group, setGroup] = useState<Group | null>(null);
 
 
-
     async function updateGroup(updatedGroup: Group) {
         try {
             const response = await fetch(`/api/groups`, {
@@ -44,6 +43,7 @@ function Page() {
                 console.error(error);
             }
         }
+
         if (!id) return;
         fetchGroup().catch(console.error);
     }, [id]);
@@ -57,7 +57,7 @@ function Page() {
                 type="text"
                 placeholder="Group name"
                 value={group.name}
-                className={"m-1 pl-4 text-3xl light:bg-white dark:bg-[#222222] "}
+                className={"m-1 pl-4 py-1 text-3xl light:border-gray-500 light:border-2 light:rounded light:bg-gray-200 dark:bg-[#222222] "}
                 style={{outline: 'none'}}
                 onChange={(e) => {
                     const updatedGroup = {...group, name: e.target.value};

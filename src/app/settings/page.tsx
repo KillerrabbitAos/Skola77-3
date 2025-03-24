@@ -1,9 +1,9 @@
 "use client"
 
 import React, {useEffect, useState} from 'react';
-import ThemeSwitcher from "@/app/components/themeSwitcher";
+import ThemeSwitcher from "@/components/themeSwitcher";
 import {useSession} from "next-auth/react";
-import {SignInPrompt} from "@/app/components/signInPrompt";
+import {SignInPrompt} from "@/components/signInPrompt";
 
 const Settings: React.FC = () => {
     const {data: session, status} = useSession();

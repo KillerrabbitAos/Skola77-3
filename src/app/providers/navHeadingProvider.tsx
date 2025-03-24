@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {SmallProfilePicture} from "@/app/components/smallProfilePicture";
+import {SmallProfilePicture} from "@/components/smallProfilePicture";
 import {useSession} from "next-auth/react";
-import {SignInPrompt} from "@/app/components/signInPrompt";
-import {LeftArrowButton} from "@/app/components/leftArrowButton";
-import {SearchField} from "@/app/components/searchField";
+import {SignInPrompt} from "@/components/signInPrompt";
+import {LeftArrowButton} from "@/components/leftArrowButton";
+import {SearchField} from "@/components/searchField";
 
 function NavHeadingProvider({ children }: { children: React.ReactNode }) {
     const { data: session, status } = useSession();

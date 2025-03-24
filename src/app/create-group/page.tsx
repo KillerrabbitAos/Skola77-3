@@ -14,8 +14,8 @@ function Page() {
                 body: JSON.stringify({name: groupName}),
             });
             const data = await response.json();
-            if (!data || typeof data !== "string") return;
-            const {id} = JSON.parse(data);
+            const id = data?.id
+            if (!id) return;
             window.location.replace('/group?id=' + String(id) + '')
         } catch (e) {
             console.error(e)
@@ -38,12 +38,12 @@ function Page() {
     return (
         <div style={{position: "absolute", top: height / 2, left: "50%", transform: "translate(-50%, -50%)"}}>
             <div
-                className="flex flex-col items-center gap-2 dark:bg-gray-700 light:bg-[lightgray] p-4 rounded-2xl border-1 ">
+                className="flex flex-col items-center gap-2 dark:bg-gray-700 light:bg-[lightgray] p-4 rounded-2xl dark:border-1 ">
                 <input type="text" placeholder="Group name" onChange={(e) => setGroupName(e.target.value)}
-                       className="p-2 border rounded"
+                       className="p-2 dark:border rounded"
                        style={{outline: 'none'}}/>
                 <button onClick={createGroup}
-                        className="cursor-pointer p-2 border-1 dark:text-white light:text-black rounded">Create
+                        className="cursor-pointer w-full light:text-gray-700 p-2 border-1 dark:text-white  rounded">Create
                 </button>
             </div>
         </div>
