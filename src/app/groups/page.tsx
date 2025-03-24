@@ -43,9 +43,7 @@ function Page() {
             <h1 className={"text-3xl mb-3"}>Groups</h1>
 
             <div
-                className={`flex flex-wrap gap-4 ${
-                    groupsInAlphabeticalOrder.length % 2 === 0 ? 'justify-center' : 'justify-start'
-                }`}
+                className={`flex flex-wrap gap-4`}
             >
                 {groupsInAlphabeticalOrder.length > 0 &&
                     groupsInAlphabeticalOrder.map((group) => (
