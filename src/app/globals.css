@@ -6,8 +6,8 @@ body {
     background: #fff;
 }
 
-[data-theme='dark'],
-[data-theme='dark'] body {
+.dark,
+.dark body {
     color: lightgray;
     background: #121212;
 }
