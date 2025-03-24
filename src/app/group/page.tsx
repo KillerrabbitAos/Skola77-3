@@ -23,6 +23,23 @@ function Page() {
         }
     }
 
+    async function updateGroup(updatedGroup: Group) {
+        try {
+            const response = await fetch(`/api/groups`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedGroup),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to update group');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         if (!id) return;
         fetchGroup();
@@ -33,10 +50,18 @@ function Page() {
 
     return (
         <div>
-
-            <input type="text" placeholder="Group name" value={group.name} className={"m-1 pl-4 text-3xl light:bg-white dark:bg-[#222222] "}
-                   style={{outline: 'none'}}
-                   readOnly/>
+            <input
+                type="text"
+                placeholder="Group name"
+                value={group.name}
+                className={"m-1 pl-4 text-3xl light:bg-white dark:bg-[#222222] "}
+                style={{outline: 'none'}}
+                onChange={(e) => {
+                    const updatedGroup = {...group, name: e.target.value};
+                    setGroup(updatedGroup);
+                    updateGroup(updatedGroup);
+                }}
+            />
             <ul>
                 {group.members.map((member) => (
                     <li key={member}>{member}</li>

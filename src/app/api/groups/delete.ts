@@ -1,36 +1,32 @@
-import {NextApiRequest, NextApiResponse} from "next";
+import {NextResponse} from 'next/server';
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {PrismaClient} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
-    const session = await getServerSession(authOptions)
+export async function DELETE(request: Request) {
+    const session = await getServerSession(authOptions);
 
     if (!session || !session.user || !session.user.id) {
-        return res.status(401).json({error: 'Unauthorized'});
+        return NextResponse.json({error: 'Unauthorized'}, {status: 401});
     }
 
     const userId = session.user.id;
-    const {group} = JSON.parse(req.body);
-    const {id} = req.query;
 
-    if (id && typeof id !== 'string') {
-        return res.status(400).json({error: 'Invalid group id'});
+    const {searchParams} = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id || typeof id !== 'string') {
+        return NextResponse.json({error: 'invalid groups id'}, {status: 400})
     }
-
-    if (group && typeof group !== 'string') {
-        return res.status(400).json({error: 'Invalid group'});
-    }
-
-
     try {
-        prisma.group.delete({
-            where: {userId: userId, id: id || group?.id}
-        })
+        await prisma.group.delete({
+            where: {userId: userId, id}
+        });
     } catch (error) {
         console.error('Error deleting group:', error);
-        return res.status(500).json({error: 'Internal server error'});
+        return NextResponse.json({error: 'Internal server error'}, {status: 500});
     }
+    return NextResponse.json({message: 'Group deleted'}, {status: 200});
 }
