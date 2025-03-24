@@ -1,5 +1,5 @@
 export default function GroupCard({group, onEdit, onDelete}: {
-    group: { id: string; name: string; members: any[] },
+    group: { id: string; name: string; members: string[] },
     onEdit: () => void,
     onDelete: () => void
 }) {
