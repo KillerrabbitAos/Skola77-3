@@ -13,9 +13,10 @@ model User {
   email         String          @unique
   emailVerified DateTime?
   image         String?
-  location      String?
+  location      Unsupported("geometry(Point, 4326)")
   accounts      Account[]
   sessions      Session[]
+  admin         Boolean         @default(false)
 
   Authenticator Authenticator[]
 
