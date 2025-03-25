@@ -28,7 +28,6 @@ export async function GET(req: Request) {
             return NextResponse.json({ error: "Internal server error" }, { status: 500 });
         }
     }
-
     try {
         const groups = await prisma.group.findMany({
             where: { userId: userId },
