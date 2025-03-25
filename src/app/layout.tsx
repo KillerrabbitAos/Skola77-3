@@ -10,6 +10,7 @@ export default function RootLayout({
         <html lang='en' suppressHydrationWarning>
         <head>
             <title>Skola77-3</title>
+            <meta property="description" content="Skola77-3 alpha preview site" />
         </head>
         <body>
         <Providers>{children}</Providers>
