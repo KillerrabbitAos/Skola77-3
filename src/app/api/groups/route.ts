@@ -1,8 +1,8 @@
-import { GET as getHandler } from './get';
-import { PATCH as patchHandler } from './patch';
-import { POST as postHandler } from './post';
-import { DELETE as deleteHandler } from './delete';
-import { PUT as putHandler } from './put';
+import { GET as getHandler } from './handlers/get';
+import { PATCH as patchHandler } from './handlers/patch';
+import { POST as postHandler } from './handlers/post';
+import { DELETE as deleteHandler } from './handlers/delete';
+import { PUT as putHandler } from './handlers/put';
 
 export async function GET(req: Request) {
     return getHandler(req);
