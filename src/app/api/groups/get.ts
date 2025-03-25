@@ -16,10 +16,6 @@ export async function GET(req: Request) {
     const id = searchParams.get("id");
     const userId = session.user.id;
 
-    if (!id) {
-        return NextResponse.json({ error: "Invalid groups id" }, { status: 400 });
-    }
-
     if (id) {
         try {
             const group = await prisma.group.findUnique({
