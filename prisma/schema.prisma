@@ -13,9 +13,10 @@ model User {
   email         String          @unique
   emailVerified DateTime?
   image         String?
+  location      String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
+
   Authenticator Authenticator[]
 
   createdAt DateTime @default(now())
@@ -24,6 +25,7 @@ model User {
   UserPreference UserPreference[]
 
   Group Group[]
+
 }
 
 model Account {

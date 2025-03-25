@@ -6,7 +6,6 @@ html,
 body {
     color: #121212;
     background: #fff;
-    user-select: none;
 }
 
 [data-theme='dark'],
