@@ -20,7 +20,7 @@ function Page() {
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: `${latitude},${longitude}`,
+                        body: JSON.stringify({ latitude, longitude }),
                     }).catch((err) => console.error('', err));
                 },
                 (error) => {

@@ -19,11 +19,9 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Valid latitude and longitude are required" }, { status: 400 });
         }
 
-        const locationString = JSON.stringify({ latitude, longitude });
-
         await prisma.user.update({
             where: { id: session.user.id },
-            data: { location: locationString },
+            data: { location: `${latitude},${longitude}` },
         });
 
         return NextResponse.json({ message: "Location updated successfully" });
