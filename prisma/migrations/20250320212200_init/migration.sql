@@ -1,4 +1,3 @@
-CREATE EXTENSION postgis;
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,

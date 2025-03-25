@@ -19,14 +19,10 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Valid latitude and longitude are required" }, { status: 400 });
         }
 
-        const locationQuery = `ST_SetSRID(ST_MakePoint($1, $2), 4326)`;
-
-        await prisma.$executeRaw`
-            UPDATE "User"
-            SET "location" = ${locationQuery}
-            WHERE "id" = ${session.user.id}
-            AND "location" IS DISTINCT FROM ${locationQuery}
-        `;
+        await prisma.user.update({
+            where: { id: session.user.id },
+            data: { location: `${latitude},${longitude}` },
+        });
 
         return NextResponse.json({ message: "Location updated successfully" });
     } catch (error) {
