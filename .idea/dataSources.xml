@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/skola77_3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="defaultdb@skola77-3-pre-alpha-centiljard.k.aivencloud.com" uuid="5de81096-e118-43b8-953c-937238f3e656">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://skola77-3-pre-alpha-centiljard.k.aivencloud.com:27552/defaultdb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

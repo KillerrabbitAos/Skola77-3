@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/utils/authOptions";
 import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
@@ -16,7 +16,7 @@ export async function GET(req: Request) {
     const id = searchParams.get("id");
     const userId = session.user.id;
 
-    if (id && typeof id !== "string") {
+    if (!id) {
         return NextResponse.json({ error: "Invalid groups id" }, { status: 400 });
     }
 

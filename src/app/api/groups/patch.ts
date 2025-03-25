@@ -1,5 +1,5 @@
-import {NextApiRequest, NextApiResponse} from "next";
+import {NextResponse} from "next/server";
 
-export async function PATCH(req: NextApiRequest, res: NextApiResponse) {
-    return res.status(501).json({error: 'Not implemented'});
+export async function PATCH() {
+    return NextResponse.json({error: 'Not implemented'}, {status: 501});
 }
