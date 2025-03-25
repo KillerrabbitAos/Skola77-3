@@ -11,22 +11,7 @@ function Page() {
 
     useEffect(() => {
         if (user) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-
-                    fetch('/api/location', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ latitude, longitude }),
-                    }).catch((err) => console.error('', err));
-                },
-                (error) => {
-                    console.error('', error);
-                }
-            );
+            setLoading(false);
         }
     }, [user]);
 
