@@ -28,7 +28,7 @@ export async function PUT(request: Request) {
         if (success) {
             return NextResponse.json({message: 'Theme updated successfully'});
         } else {
-            return NextResponse.json({error: 'Failed tq update theme'}, {status: 500});
+            return NextResponse.json({error: 'Failed to update theme'}, {status: 500});
         }
     } catch (error) {
         console.error('Error updating user theme:', error);

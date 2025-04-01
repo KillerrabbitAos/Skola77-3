@@ -21,7 +21,7 @@ export function SearchField() {
         <input
             type="text"
             placeholder="Search"
-            className="w-full h-4/6 px-4 py-2 pl-10 bg-gray-100 rounded-lg text-gray-700 outline-none"
+            className="w-full h-4/6 px-4 py-2 pl-10 bg-gray-100 classic:bg-green-200 classic:border-1 rounded-lg text-gray-700 outline-none"
         />
     </div>;
 }

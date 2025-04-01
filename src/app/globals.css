@@ -1,14 +1,16 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
-@custom-variant classic(&:where([data-theme=classic], [data-theme=classic] *));
+@custom-variant classic (&:where([data-theme=classic], [data-theme=classic] *));
 
 html,
 body {
     color: #121212;
     background: #fff;
 }
-
+[data-theme=classic], [data-theme=classic] body {
+    background-color: #f2f2f2;
+}
 [data-theme='dark'],
 [data-theme='dark'] body {
     color: lightgray;
