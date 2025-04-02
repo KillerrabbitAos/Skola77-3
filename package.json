@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "restart dev": "kill -9 $(lsof -t -i:3000) && next dev --turbopack",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
