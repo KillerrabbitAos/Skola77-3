@@ -25,9 +25,9 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="w-full justify-center items-center h-20 ">
+      <div className="w-full justify-item items-center flex-row h-20 ">
         <div className="grid grid-cols-5 items-center h-10">
-          <div className="flex items-center h-full items-center ">
+          <div className="flex items-center h-full ">
             <LeftArrowButton
             className="cursor-pointer"
               onClick={() => {
@@ -65,3 +65,6 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 }
 
 export default NavHeadingProvider;
+
+
+//bogus was here
