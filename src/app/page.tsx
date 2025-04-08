@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useGroupsStore } from "@/lib/groupStore";
+import { useGroupsStore } from "@/lib/store";
 
 export default function Home() {
   const router = useRouter();

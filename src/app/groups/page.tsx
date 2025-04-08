@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Group } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import GroupCard from "@/components/groupCard";
-import { useGroupStore } from "@/lib/groupStore";
-import { useGroupsStore } from "@/lib/groupStore";
+import { useGroupStore } from "@/lib/store";
+import { useGroupsStore } from "@/lib/store";
 
 function Page() {
   const storedGroups = useGroupsStore((state) => state.groups);

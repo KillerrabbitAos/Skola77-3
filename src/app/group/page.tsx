@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useGroupStore } from "@/lib/groupStore";
+import { useGroupStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { Group } from "@prisma/client";
 
