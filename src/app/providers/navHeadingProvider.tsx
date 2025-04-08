@@ -4,11 +4,18 @@ import {useSession} from "next-auth/react";
 import {SignInPrompt} from "@/components/signInPrompt";
 import {LeftArrowButton} from "@/components/leftArrowButton";
 import {SearchField} from "@/components/searchField";
+import { useRouter } from 'next/navigation';
 
 function NavHeadingProvider({ children }: { children: React.ReactNode }) {
     const { data: session, status } = useSession();
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
+
     const user = session?.user;
+
+    function redirectHome() {
+        router.replace("/");
+    }
 
     useEffect(() => {
         if (status !== "loading") {
@@ -23,9 +30,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
         <>
             <div className="grid grid-cols-5 h-20 ">
                 <div className="flex items-center justify-start">
-                    <LeftArrowButton onClick={() => {
-                        window.location.replace("/")
-                    }}/>
+                    <LeftArrowButton onClick={redirectHome}/>
                 </div>
                 <div className="flex col-span-3 items-center justify-center">
                     <SearchField/>

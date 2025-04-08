@@ -12,3 +12,15 @@ export const useGroupStore = create<GroupState>((set) => ({
   setSelectedGroup: (group) => set({ selectedGroup: group }),
   clearSelectedGroup: () => set({ selectedGroup: null }),
 }));
+
+interface GroupsState {
+  groups: Group[];
+  setGroups: (groups: Group[]) => void;
+  clearGroups: () => void;
+}
+
+export const useGroupsStore = create<GroupsState>((set) => ({
+  groups: [],
+  setGroups: (groups) => set({ groups }),
+  clearGroups: () => set({ groups: [] }),
+}));

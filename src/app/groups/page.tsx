@@ -5,10 +5,15 @@ import { Group } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import GroupCard from "@/components/groupCard";
 import { useGroupStore } from "@/lib/groupStore";
+import { useGroupsStore } from "@/lib/groupStore";
 
 function Page() {
-  const [mounted, setMounted] = useState(false);
-  const [groups, setGroups] = useState([] as Array<Group>);
+  const storedGroups = useGroupsStore((state) => state.groups);
+  const setGroupsStore = useGroupsStore((state) => state.setGroups);
+  const clearSelectedGroups = useGroupsStore((state) => state.clearGroups);
+
+  const [groups, setGroups] = useState<Group[] | []>(storedGroups || null);
+
   const router = useRouter();
 
   function redirectToGroupCreator() {
@@ -25,6 +30,7 @@ function Page() {
     const data = await response.json();
     const groups = data?.groups;
     if (!groups) return;
+    setGroupsStore(groups);
     setGroups(groups);
   }
 
@@ -33,16 +39,22 @@ function Page() {
       method: "DELETE",
     });
     if (!response.ok) return;
+
     setGroups((prevGroups) => prevGroups.filter((g) => g.id !== group.id));
   }
 
   useEffect(() => {
-    setMounted(true);
-
+    if (storedGroups) clearSelectedGroups();
     fetchGroups();
   }, []);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    const intervalId = setInterval(fetchGroups, 5000);
+    fetchGroups();
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   const groupsInAlphabeticalOrder = groups.sort((a, b) =>
     a.name.localeCompare(b.name)
