@@ -4,12 +4,15 @@ import { act } from 'react';
 
 type Step = [number, number]; 
 
-// diclaimer: 
-// This test is barely a unit test. 
-// It almost replicates the entire hook logic, making it more of a snapshot of the actual hook.
+// Disclaimer: 
+// This is an integration test for the useDynamicInterval hook.
+// It is not a unit test.
+// That means I get cut some slack.
+// Also it almost replicates the entire hook logic, making it more of a snapshot of the actual hook.
 // As long as you don't change the test itself,
 // you can be sure that the test will pass if the hook works.
-// By the way of my competence. 
+// By the way of my competence.
+// And our mutal trust in chatGPT. 
 
 jest.useFakeTimers();
 
