@@ -1,11 +1,16 @@
 "use client";
 
+import { useGroupStore } from "@/lib/store";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 function Page() {
   const [mounted, setMounted] = useState(false);
   const [groupName, setGroupName] = useState("");
   const [height, setHeight] = useState(window.innerHeight);
+  const router = useRouter();
+
+  const setSelectedGroup = useGroupStore((state) => state.setSelectedGroup);
 
   async function createGroup() {
     try {
@@ -16,7 +21,7 @@ function Page() {
       const data = await response.json();
       const id = data?.id;
       if (!id) return;
-      window.location.replace("/group?id=" + String(id) + "");
+      router.replace("/group?id=" + String(id) + "");
     } catch (e) {
       console.error(e);
     }
@@ -25,11 +30,16 @@ function Page() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
   useEffect(() => {
     const updateHeight = () => setHeight(window.innerHeight);
     window.addEventListener("resize", updateHeight);
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
+
+  useEffect(() => {
+    setSelectedGroup({id: "", name: groupName, userId: "", createdAt: new Date(), updatedAt: new Date(), members: []});
+  }, [groupName, setSelectedGroup]);
 
   if (!mounted) return null;
 
