@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import GroupCard from "@/components/groupCard";
 import { useGroupStore } from "@/lib/store";
 import { useGroupsStore } from "@/lib/store";
+import { useDynamicInterval } from "@/hooks/useDynamicInterval";
+import { groupsFetchIntervalSteps } from "@/config";
 
 function Page() {
   const storedGroups = useGroupsStore((state) => state.groups);
@@ -48,41 +50,7 @@ function Page() {
     fetchGroups();
   }, []);
 
-  useEffect(() => {
-    let fetchCount = 0;
-    let intervalDuration = 5000;
-    let intervalId: NodeJS.Timeout;
-
-    const dynamicFetchGroups = () => {
-      fetchGroups();
-      fetchCount++;
-      if (fetchCount === 0) {
-        intervalDuration = 0;
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      } else if (fetchCount === 2) {
-        intervalDuration = 15000;
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      }
-      if (fetchCount === 3) {
-        intervalDuration = 30000;
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      } else if (fetchCount === 7) {
-        intervalDuration = 60000;
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      }
-    };
-
-    intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-    dynamicFetchGroups();
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  useDynamicInterval(fetchGroups, groupsFetchIntervalSteps);
 
   const groupsInAlphabeticalOrder = groups.sort((a, b) =>
     a.name.localeCompare(b.name)

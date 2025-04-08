@@ -4,6 +4,8 @@ import { useSearchParams } from "next/navigation";
 import { useGroupStore } from "@/lib/store";
 import { useEffect, useState } from "react";
 import { Group } from "@prisma/client";
+import { useDynamicInterval } from '@/hooks/useDynamicInterval';
+import { groupFetchIntervalSteps } from "@/config";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -45,41 +47,7 @@ export default function Page() {
     }
   };
 
-  useEffect(() => {
-    let fetchCount = 0;
-    let intervalDuration = 5000; 
-    let intervalId: NodeJS.Timeout;
-  
-    const dynamicFetchGroups = () => {
-      fetchGroup();
-      fetchCount++;
-      if (fetchCount === 0) {
-        intervalDuration = 0; 
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      } else if (fetchCount === 2) {
-        intervalDuration = 15000; 
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      } else
-      if (fetchCount === 3) {
-        intervalDuration = 30000; 
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      } else if (fetchCount === 7) {
-        intervalDuration = 60000; 
-        clearInterval(intervalId);
-        intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-      }
-    };
-  
-    intervalId = setInterval(dynamicFetchGroups, intervalDuration);
-    dynamicFetchGroups(); 
-  
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+  useDynamicInterval(fetchGroup, groupFetchIntervalSteps);
 
   useEffect(() => {
     if (storedGroup) clearSelectedGroup();
