@@ -13,6 +13,6 @@ export function SmallProfilePicture(props: {
 
     // eslint-disable-next-line @next/next/no-img-element
     return <img onClick={redirectToProfile}
-                className="light:border-[#121212] dark:border-lightgray cursor-pointer border-2 rounded-full size-14 m-2"
+                className="light:border-[#121212] dark:border-lightgray cursor-pointer border-2 rounded-full m-2 h-[35px]"
                 src={props.user?.image as string} alt=":)"/>;
 }
