@@ -18,6 +18,8 @@ function Page() {
 
   const router = useRouter();
 
+  router.prefetch("/create-group");
+  
   function redirectToGroupCreator() {
     router.replace("/create-group");
   }
