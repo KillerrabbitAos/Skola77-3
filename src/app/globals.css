@@ -7,6 +7,7 @@ html,
 body {
     color: #121212;
     background: #fff;
+    user-select: none;
 }
 [data-theme=classic], [data-theme=classic] body {
     background-color: #f2f2f2;
@@ -15,4 +16,8 @@ body {
 [data-theme='dark'] body {
     color: lightgray;
     background: #121212;
+}
+
+button{
+    cursor: pointer;
 }

@@ -4,7 +4,7 @@ export default function GroupCard({group, onEdit, onDelete}: {
     onDelete: () => void
 }) {
     return (
-        <div className="border-2 rounded dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-[252px] mb-3 cursor-pointer" onClick={(e) => {
+        <div className="border-2 rounded light:bg-gray-100 dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-[252px] mb-3 cursor-pointer" onClick={(e) => {
             if (!(e.target as HTMLElement).closest('button')) {
                 onEdit();
             }
@@ -28,7 +28,7 @@ export default function GroupCard({group, onEdit, onDelete}: {
                         e.stopPropagation();
                         onDelete();
                     }}
-                    className="w-full h-full bg-red-300 text-black rounded hover:bg-red-400"
+                    className="w-full h-full bg-red-300 dark:text-black light:text-gray-800 rounded hover:bg-red-400"
                 >
                     Delete
                 </button>

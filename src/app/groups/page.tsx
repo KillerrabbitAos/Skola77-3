@@ -57,7 +57,15 @@ function Page() {
   );
   return (
     <div className={"ml-2"}>
-      <h1 className={"text-3xl mb-3"}>Groups</h1>
+      <div className="flex items-center mb-3">
+        <h1 className={"text-3xl mr-4"}>Groups</h1>{" "}
+        <button
+          onClick={redirectToGroupCreator}
+          className="px-4 py-2 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
+        >
+          Create new
+        </button>
+      </div>
 
       <div className={`flex flex-wrap gap-4`}>
         {groupsInAlphabeticalOrder.length > 0 &&
@@ -70,12 +78,6 @@ function Page() {
             />
           ))}
       </div>
-      <button
-        onClick={redirectToGroupCreator}
-        className="px-4 py-2 bg-gray-600 text-gray-200 rounded hover:bg-blue-400"
-      >
-        Create group
-      </button>
     </div>
   );
 }
