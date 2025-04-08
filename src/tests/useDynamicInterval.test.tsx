@@ -12,7 +12,7 @@ type Step = [number, number];
 // As long as you don't change the test itself,
 // you can be sure that the test will pass if the hook works.
 // By the way of my competence
-// and our mutal trust in chatGPT. 
+// ...and our mutal trust in chatGPT. 
 
 jest.useFakeTimers();
 
