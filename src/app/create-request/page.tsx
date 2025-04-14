@@ -21,7 +21,7 @@ function Page() {
       const data = await response.json();
       const id = data?.id;
       if (!id) return;
-      router.replace("/group?id=" + String(id) + "");
+      router.replace("/request?id=" + String(id) + "");
     } catch (e) {
       console.error(e);
     }
@@ -38,7 +38,15 @@ function Page() {
   }, []);
 
   useEffect(() => {
-    setSelectedGroup({id: "", name: groupName, userId: "", createdAt: new Date(), updatedAt: new Date(), members: []});
+    setSelectedGroup({
+      id: "",
+      name: groupName,
+      userId: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      members: 0,
+      body: "",
+    });
   }, [groupName, setSelectedGroup]);
 
   if (!mounted) return null;
@@ -55,11 +63,12 @@ function Page() {
       <div className="flex flex-col items-center gap-2 dark:bg-gray-700 light:bg-[lightgray] classic:bg-gray-200 p-4 rounded-2xl dark:border-1 ">
         <input
           type="text"
-          placeholder="Group name"
+          placeholder="Request title"
           onChange={(e) => setGroupName(e.target.value)}
           className="p-2 dark:border rounded"
           style={{ outline: "none" }}
         />
+
         <button
           onClick={createGroup}
           className="cursor-pointer w-full classic:bg-green-500 classic:text-white light:text-gray-700 p-2 border-1 dark:text-white classic:hover:bg-green-600 rounded"

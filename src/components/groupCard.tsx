@@ -1,5 +1,5 @@
 export default function GroupCard({group, onEdit, onDelete}: {
-    group: { id: string; name: string; members: string[] },
+    group: { id: string; name: string; members: number },
     onEdit: () => void,
     onDelete: () => void
 }) {
@@ -11,7 +11,7 @@ export default function GroupCard({group, onEdit, onDelete}: {
         }}>
             <div className="flex h-[35px] mb-2">
                 <div className="text-2xl flex flex-grow justify-items-center">{group.name}</div>
-                <div className="flex items-center">Members: {group.members.length}</div>
+                <div className="flex items-center">Status: {group.members === 0 ? "Ordered" : ""}</div>
             </div>
             <div className="grid grid-cols-2 gap-2">
                 <div

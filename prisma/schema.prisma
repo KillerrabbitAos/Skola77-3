@@ -101,7 +101,8 @@ model Group {
   id      String   @id @default(cuid())
   userId  String
   name    String
-  members String[]
+  members Int      @default(0)
+  body    String   @default("")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

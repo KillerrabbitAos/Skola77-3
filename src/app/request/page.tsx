@@ -2,10 +2,14 @@
 
 import { useSearchParams } from "next/navigation";
 import { useGroupStore } from "@/lib/store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Group } from "@prisma/client";
-import { useDynamicInterval } from '@/hooks/useDynamicInterval';
+import { useDynamicInterval } from "@/hooks/useDynamicInterval";
 import { groupFetchIntervalSteps } from "@/config";
+import { useTheme } from "next-themes";
+import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -13,6 +17,9 @@ export default function Page() {
   const storedGroup = useGroupStore((state) => state.selectedGroup);
   const clearSelectedGroup = useGroupStore((state) => state.clearSelectedGroup);
   const [group, setGroup] = useState<Group | null>(storedGroup || null);
+  const { theme } = useTheme();
+
+  const editorRef = useRef<Editor>(null);
 
   async function updateGroup(updatedGroup: Group) {
     try {
@@ -39,8 +46,8 @@ export default function Page() {
         console.error("Failed to fetch group");
         return;
       }
-      const data = await response.json();
-      if (data == group) return;
+      const data: Group = await response.json();
+      if (JSON.stringify(data) === JSON.stringify(group)) return;
       setGroup(data);
     } catch (error) {
       console.error(error);
@@ -58,17 +65,26 @@ export default function Page() {
     }
   }, []);
 
+  const handleEditorChange = () => {
+    if (editorRef.current) {
+      const updatedBody = editorRef.current.getInstance().getMarkdown();
+      if (group && updatedBody !== group.body) {
+        const updatedGroup = { ...group, body: updatedBody };
+        setGroup(updatedGroup);
+        updateGroup(updatedGroup).catch(console.error);
+      }
+    }
+  };
+
   if (!id || !group) return null;
 
   return (
     <div>
       <input
         type="text"
-        placeholder="Group name"
+        placeholder="Request title"
         value={group.name}
-        className={
-          "m-1 pl-4 py-1 text-3xl light:border-gray-500 light:border-2 light:rounded light:bg-gray-200 dark:bg-[#222222] "
-        }
+        className="m-1 pl-3 mb-7 py-1 text-3xl light:border-gray-500 light:border-2 light:rounded light:bg-gray-200 dark:bg-[#222222]"
         style={{ outline: "none" }}
         onChange={(e) => {
           const updatedGroup = { ...group, name: e.target.value };
@@ -76,11 +92,21 @@ export default function Page() {
           updateGroup(updatedGroup).catch(console.error);
         }}
       />
-      <ul>
-        {group.members.map((member) => (
-          <li key={member}>{member}</li>
-        ))}
-      </ul>
+      <div className="mx-1 max-w-200">
+        <Editor
+          theme={theme === "dark" ? "dark" : theme === "classic" ? "default" : "light"}
+          ref={editorRef}
+          initialValue={group.body || ""}
+          previewStyle="vertical"
+          height="400px"
+          initialEditType="wysiwyg"
+          useCommandShortcut={true}
+          onChange={handleEditorChange}
+        />
+        <button className="p-4 mt-1 bg-gray-300 rounded text-black w-full">
+          Save
+        </button>
+      </div>
     </div>
   );
 }

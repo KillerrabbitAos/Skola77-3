@@ -19,7 +19,7 @@ export default function Home() {
   }, [setGroups]);
 
   function redirectToGroupsPage() {
-    router.replace("/groups");
+    router.replace("/requests");
   }
 
   function redirectToSettingsPage() {
@@ -38,7 +38,7 @@ export default function Home() {
           onClick={redirectToGroupsPage}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 transition mx-1"
         >
-          Go to Groups
+          Go to Requests
         </button>
         <button
           onClick={redirectToSettingsPage}

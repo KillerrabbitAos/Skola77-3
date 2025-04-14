@@ -18,15 +18,15 @@ function Page() {
 
   const router = useRouter();
 
-  router.prefetch("/create-group");
+  router.prefetch("/create-request");
   
   function redirectToGroupCreator() {
-    router.replace("/create-group");
+    router.replace("/create-request");
   }
 
   function changeUrl(group: Group) {
     useGroupStore.getState().setSelectedGroup(group);
-    router.replace(`/group?id=${group.id}`);
+    router.replace(`/request?id=${group.id}`);
   }
 
   async function fetchGroups() {
@@ -60,7 +60,7 @@ function Page() {
   return (
     <div className={"ml-2"}>
       <div className="flex items-center mb-3">
-        <h1 className={"text-3xl mr-4"}>Groups</h1>{" "}
+        <h1 className={"text-3xl mr-4"}>Requests</h1>{" "}
         <button
           onClick={redirectToGroupCreator}
           className="px-4 py-2 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
