@@ -29,7 +29,7 @@ function Page() {
       </div>
         <div className="flex flex-col items-center justify-center mt-4">
 
-            <p className="text-gray-600">{user.SBucks}</p>
+            <p className="text-gray-600">{}</p>
     </div>
     </div>
   );
