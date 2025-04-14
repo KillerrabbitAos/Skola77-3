@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { LargeProfilePicture } from "@/components/largeProfilePicture";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 function Page() {
   const { data: session } = useSession();
@@ -26,10 +26,12 @@ function Page() {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">{user.name}</h1>
         <p className="text-gray-600">{user.email}</p>
+        <p className="text-gray-600">{user.role}</p> 
       </div>
         <div className="flex flex-col items-center justify-center mt-4">
 
             <p className="text-gray-600">{}</p>
+            <button className="bg-amber-100 p-5 rounded text-black" onClick={() => signOut()}>Sign out</button>
     </div>
     </div>
   );

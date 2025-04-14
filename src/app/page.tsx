@@ -26,6 +26,10 @@ export default function Home() {
     router.replace("/settings");
   }
 
+  function redirectToAccountCreator() {
+    router.replace("/create-account");
+  }
+
   const renderContent = () => {
     return (
       <>
@@ -41,6 +45,12 @@ export default function Home() {
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 transition"
         >
           Go to Settings
+        </button>
+        <button
+          onClick={redirectToAccountCreator}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 mx-1 transition"
+        >
+          Go to Account Creator
         </button>
       </>
     );

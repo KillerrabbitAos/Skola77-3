@@ -1,8 +1,10 @@
+'use client';
+
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-export function SignInPrompt() {
+export default function SignInPage() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
   const error = searchParams.get('error');
@@ -41,10 +43,10 @@ export function SignInPrompt() {
         {formError && <p className="text-red-500 mb-3">{formError}</p>}
 
         <label className="block mb-2 text-sm font-medium text-gray-700">
-          Username
+          Email
         </label>
         <input
-          type="text"
+          type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
           className="w-full mb-4 p-2 border border-gray-300 rounded"
@@ -66,18 +68,8 @@ export function SignInPrompt() {
           type="submit"
           className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
         >
-          Sign In
+          Si
         </button>
-
-        <div className="mt-4">
-          <button
-            type="button"
-            onClick={() => signIn('google', { callbackUrl })}
-            className="w-full bg-red-600 text-white p-2 rounded hover:bg-red-700"
-          >
-            Sign In with Google
-          </button>
-        </div>
       </form>
     </div>
   );

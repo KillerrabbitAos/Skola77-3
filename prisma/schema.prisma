@@ -15,7 +15,9 @@ model User {
   image         String?
   SBucks        Int             @default(0)
   password      String?
-  isVerified     Boolean         @default(false)
+  isVerified    Boolean         @default(false)
+  isAdmin       Boolean         @default(false)
+  role          String?
 
   accounts      Account[]
   sessions      Session[]
