@@ -26,7 +26,6 @@ function Page() {
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold">{user.name}</h1>
         <p className="text-gray-600">{user.email}</p>
-        <p className="text-gray-600">{user.role}</p> 
       </div>
         <div className="flex flex-col items-center justify-center mt-4">
 
