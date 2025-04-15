@@ -21,16 +21,16 @@ import {
   Divider,
 } from 'verbum';
 
-import "@/app/globals.css"
 interface RequestBodyEditorProps {
-  onChange: (editorState: unknown) => void;
+  onChange: (content: string) => void;
+  initialValue: string; 
 }
 
-const RequestBodyEditor: FC<RequestBodyEditorProps> = ({ onChange }) => {
+const RequestBodyEditor: FC<RequestBodyEditorProps> = ({ onChange, initialValue }) => {
   return (
-    <EditorComposer>
-      <Editor hashtagsEnabled={true} onChange={onChange}>
-        <ToolbarPlugin defaultFontSize="20px" className="custom-toolbar">
+    <EditorComposer initialEditorState={initialValue}>
+      <Editor hashtagsEnabled={true} onChange={onChange} >
+        <ToolbarPlugin defaultFontSize="20px">
           <FontFamilyDropdown />
           <FontSizeDropdown />
           <Divider />
