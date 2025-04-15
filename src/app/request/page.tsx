@@ -13,6 +13,7 @@ import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 
 export default function Page() {
   const searchParams = useSearchParams();
+  const [saved, setSaved] = useState(false);
   const id = searchParams.get("id");
   const storedGroup = useGroupStore((state) => state.selectedGroup);
   const clearSelectedGroup = useGroupStore((state) => state.clearSelectedGroup);
@@ -84,7 +85,7 @@ export default function Page() {
         type="text"
         placeholder="Request title"
         value={group.name}
-        className="m-1 pl-3 mb-7 py-1 text-3xl light:border-gray-500 light:border-2 light:rounded light:bg-gray-200 dark:bg-[#222222]"
+        className="m-1 pl-3 mb-7 py-1 w-150 text-3xl light:border-gray-500 light:border-2 light:rounded light:bg-gray-200 dark:bg-[#222222]"
         style={{ outline: "none" }}
         onChange={(e) => {
           const updatedGroup = { ...group, name: e.target.value };
@@ -94,7 +95,13 @@ export default function Page() {
       />
       <div className="mx-1 max-w-200">
         <Editor
-          theme={theme === "dark" ? "dark" : theme === "classic" ? "default" : "light"}
+          theme={
+            theme === "dark"
+              ? "dark"
+              : theme === "classic"
+              ? "default"
+              : "light"
+          }
           ref={editorRef}
           initialValue={group.body || ""}
           previewStyle="vertical"
@@ -103,8 +110,14 @@ export default function Page() {
           useCommandShortcut={true}
           onChange={handleEditorChange}
         />
-        <button className="p-4 mt-1 bg-gray-300 rounded text-black w-full">
-          Save
+        <button
+          className="p-4 mt-1 bg-gray-300 rounded text-black w-full"
+          onClick={() => {
+            setSaved(true);
+            setTimeout(() => setSaved(false), 1070);
+          }}
+        >
+          {saved ? "Saved" : "Save"}
         </button>
       </div>
     </div>
