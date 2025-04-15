@@ -55,7 +55,6 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
         async jwt({ token, user, account, profile }) {
-            console.log("JWT callback BEFORE:", { token, user, account, profile });
 
             if (account && account.provider === "google") {
                 const dbUser = await prisma.user.findUnique({
@@ -80,11 +79,9 @@ export const authOptions: NextAuthOptions = {
                 token.role = user.role;
             }
 
-            console.log("JWT callback AFTER:", token);
             return token;
         },
         async session({ session, token }) {
-            console.log("Session callback BEFORE:", { session, token });
 
             if (!token || !token.id) {
                 console.error("Token is missing in session callback!");
@@ -94,7 +91,6 @@ export const authOptions: NextAuthOptions = {
             session.user.id = String(token.id);
             session.user.role = token.role as string | undefined;
 
-            console.log("Session callback AFTER:", session);
             return session;
         }
     },
