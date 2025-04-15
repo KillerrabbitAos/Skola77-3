@@ -56,6 +56,8 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt({ token, user, account, profile }) {
 
+            console.log("JWT callback BEFORE:", { token, user, account, profile });
+
             if (account && account.provider === "google") {
                 const dbUser = await prisma.user.findUnique({
                     where: { email: user.email ?? undefined },
