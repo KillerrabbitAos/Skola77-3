@@ -21,3 +21,7 @@ body {
 button{
     cursor: pointer;
 }
+
+.toolbar{
+    height: 44px !important;
+}
