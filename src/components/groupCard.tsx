@@ -4,14 +4,14 @@ export default function GroupCard({group, onEdit, onDelete}: {
     onDelete: () => void
 }) {
     return (
-        <div className="border-2 rounded light:bg-gray-100 dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-[252px] mb-3 cursor-pointer" onClick={(e) => {
+        <div className="border-2 rounded light:bg-gray-100 dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-125 mb-3 cursor-pointer" onClick={(e) => {
             if (!(e.target as HTMLElement).closest('button')) {
                 onEdit();
             }
         }}>
             <div className="flex h-[35px] mb-2">
                 <div className="text-2xl flex flex-grow justify-items-center">{group.name}</div>
-                <div className="flex items-center">Status: {group.members === 0 ? "Ordered" : ""}</div>
+                <div className="flex items-center">Status: {group.members === 0 ? "Ordered" : "Resolved"}</div>
             </div>
             <div className="grid grid-cols-2 gap-2">
                 <div
@@ -21,7 +21,7 @@ export default function GroupCard({group, onEdit, onDelete}: {
                     }}
                     className="w-full h-full text-gray-500 rounded items-center justify-center "
                 >
-                    Edit
+                    View and Edit
                 </div>
                 <button
                     onClick={(e) => {
