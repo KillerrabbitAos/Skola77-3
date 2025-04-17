@@ -14,6 +14,12 @@ body {
 [data-theme="classic"] body {
   background-color: #f2f2f2;
 }
+
+[data-theme="unicorn"] button, select, input {
+    border: #e95c8b solid 2px;
+
+}
+
 [data-theme="unicorn"] button,
 [data-theme="unicorn"] span,
 [data-theme="unicorn"] label,
