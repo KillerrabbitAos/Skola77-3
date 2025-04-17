@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Group } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import GroupCard from "@/components/groupCard";
+import GroupCard from "@/components/requestCard";
 import { useGroupStore } from "@/lib/store";
 import { useGroupsStore } from "@/lib/store";
 import { useDynamicInterval } from "@/hooks/useDynamicInterval";

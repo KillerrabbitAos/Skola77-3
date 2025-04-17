@@ -1,3 +1,9 @@
+const status = {
+  0: "Created",
+  1: "Seen",
+  2: "Fulfilled",
+};
+
 export default function GroupCard({
   group,
   onEdit,
@@ -21,7 +27,7 @@ export default function GroupCard({
           {group.name}
         </div>
         <div className="flex items-center">
-          Status: {group.members === 0 ? "Ordered" : "Resolved"}
+          Status: {status[group.members as keyof typeof status]}
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">
