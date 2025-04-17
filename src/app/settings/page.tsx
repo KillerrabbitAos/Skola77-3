@@ -4,10 +4,12 @@ import React, {useEffect, useState} from 'react';
 import ThemeSwitcher from "@/components/themeSwitcher";
 import {useSession} from "next-auth/react";
 import {SignInPrompt} from "@/components/signInPrompt";
+import { useTheme } from 'next-themes';
 
 const Settings: React.FC = () => {
     const {data: session, status} = useSession();
     const [loading, setLoading] = useState(true);
+    const { theme, setTheme } = useTheme();
     const user = session?.user;
 
     useEffect(() => {
@@ -25,13 +27,13 @@ const Settings: React.FC = () => {
                 <h2 className="text-xl font-semibold mb-4">Preferences</h2>
                 <ThemeSwitcher/>
             </div>
-            <img
+            {theme === "unicorn" && <img
             className='mx-auto'
                 src="/astral-unicorn.jpg"
                 alt="/--/o-"
                 width={500}
                 height={500}
-            />
+            />}
         </div>
     );
 };
