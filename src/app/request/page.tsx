@@ -10,6 +10,7 @@ import { useTheme } from "next-themes";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
+import RequestBodyEditor from "@/components/requestBodyEditor";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -66,15 +67,19 @@ export default function Page() {
     }
   }, []);
 
-  const handleEditorChange = () => {
-    if (editorRef.current) {
-      const updatedBody = editorRef.current.getInstance().getMarkdown();
-      if (group && updatedBody !== group.body) {
-        const updatedGroup = { ...group, body: updatedBody };
-        setGroup(updatedGroup);
-        updateGroup(updatedGroup).catch(console.error);
-      }
-    }
+  const handleEditorChange = (editorState: string) => {
+    setGroup((prevGroup) => {
+      if (!prevGroup) return null;
+      return {
+        ...prevGroup,
+        body: editorState,
+      };
+    });
+    if (!group) return;
+    updateGroup({
+      ...group,
+      body: editorState,
+    }).catch(console.error);
   };
 
   if (!id || !group) return null;
@@ -94,21 +99,9 @@ export default function Page() {
         }}
       />
       <div className="mx-1 max-w-200">
-        <Editor
-          theme={
-            theme === "dark"
-              ? "dark"
-              : theme === "classic"
-              ? "default"
-              : "light"
-          }
-          ref={editorRef}
-          initialValue={group.body || ""}
-          previewStyle="vertical"
-          height="400px"
-          initialEditType="wysiwyg"
-          useCommandShortcut={true}
+        <RequestBodyEditor
           onChange={handleEditorChange}
+          initialValue={group.body || '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"color: #000000;background-color: #ffffff;","text":"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'}
         />
         <button
           className="p-4 mt-1 bg-gray-300 rounded text-black w-full"
