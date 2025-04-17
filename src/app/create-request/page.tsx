@@ -44,7 +44,7 @@ function Page() {
       userId: "",
       createdAt: new Date(),
       updatedAt: new Date(),
-      members: 0,
+      status: 0,
       body: "",
     });
   }, [groupName, setSelectedGroup]);
