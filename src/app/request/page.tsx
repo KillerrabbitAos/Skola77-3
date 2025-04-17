@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { useGroupStore } from "@/lib/store";
 import { useEffect, useState, useRef } from "react";
-import { Group } from "@prisma/client";
+import { Request } from "@prisma/client";
 import { useDynamicInterval } from "@/hooks/useDynamicInterval";
 import { defaultEditorState, groupFetchIntervalSteps } from "@/config";
 import { useTheme } from "next-themes";
@@ -15,10 +15,10 @@ export default function Page() {
   const id = searchParams.get("id");
   const storedGroup = useGroupStore((state) => state.selectedGroup);
   const clearSelectedGroup = useGroupStore((state) => state.clearSelectedGroup);
-  const [group, setGroup] = useState<Group | null>(storedGroup || null);
+  const [group, setGroup] = useState<Request | null>(storedGroup || null);
   const { theme } = useTheme();
 
-  async function updateGroup(updatedGroup: Group) {
+  async function updateGroup(updatedGroup: Request) {
     try {
       const response = await fetch(`/api/groups`, {
         method: "PUT",
@@ -43,7 +43,7 @@ export default function Page() {
         console.error("Failed to fetch group");
         return;
       }
-      const data: Group = await response.json();
+      const data: Request = await response.json();
       if (JSON.stringify(data) === JSON.stringify(group)) return;
       setGroup(data);
     } catch (error) {
