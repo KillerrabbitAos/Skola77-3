@@ -1,27 +1,55 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 @custom-variant classic (&:where([data-theme=classic], [data-theme=classic] *));
+@custom-variant unicorn (&:where([data-theme=unicorn], [data-theme=unicorn] *));
 
 html,
 body {
-    color: #121212;
-    background: #fff;
-    user-select: none;
+  color: #121212;
+  background: #fff;
+  user-select: none;
 }
-[data-theme=classic], [data-theme=classic] body {
-    background-color: #f2f2f2;
-}
-[data-theme='dark'],
-[data-theme='dark'] body {
-    color: lightgray;
-    background: #121212;
+[data-theme="classic"],
+[data-theme="classic"] body {
+  background-color: #f2f2f2;
 }
 
-button{
-    cursor: pointer;
+[data-theme="unicorn"],
+[data-theme="unicorn"] body {
+  background: rgb(236, 188, 196);
+  h1 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    font-family: sans-serif;
+    font-size: 6rem;
+    background: linear-gradient(
+      to right,
+      #ef5350,
+      #f48fb1,
+      #7e57c2,
+      #2196f3,
+      #26c6da,
+      #43a047,
+      #eeff41,
+      #f9a825,
+      #ff5722
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
-.toolbar{
-    height: 44px !important;
+[data-theme="dark"],
+[data-theme="dark"] body {
+  color: lightgray;
+  background: #121212;
+}
+
+button {
+  cursor: pointer;
+}
+
+.toolbar {
+  height: 44px !important;
 }
