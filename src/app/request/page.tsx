@@ -5,7 +5,7 @@ import { useGroupStore } from "@/lib/store";
 import { useEffect, useState, useRef } from "react";
 import { Group } from "@prisma/client";
 import { useDynamicInterval } from "@/hooks/useDynamicInterval";
-import { groupFetchIntervalSteps } from "@/config";
+import { defaultEditorState, groupFetchIntervalSteps } from "@/config";
 import { useTheme } from "next-themes";
 import RequestBodyEditor from "@/components/requestBodyEditor";
 
@@ -96,7 +96,7 @@ export default function Page() {
       <div className="mx-1 max-w-200">
         <RequestBodyEditor
           onChange={handleEditorChange}
-          initialValue={group.body || '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"color: #000000;background-color: #ffffff;","text":"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'}
+          initialValue={group.body || defaultEditorState}
         />
         <button
           className="p-4 mt-1 bg-gray-300 rounded text-black w-full"
