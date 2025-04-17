@@ -43,7 +43,7 @@ export default function CreateAccount() {
   useEffect(() => {
     setLoading(false);
   }, []);
-  
+
   if (loading || !user) return <div>laddar</div>;
 
   if (user.role !== "admin") {
@@ -52,27 +52,28 @@ export default function CreateAccount() {
 
   return (
     <div>
-      <h1>Create Account</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Email:
           <input
+          className="border-2 border-gray-300 rounded p-1 m-1"
             type="text"
+            placeholder="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
         <label>
-          Password:
           <input
             type="password"
+            placeholder="password"
             value={password}
+            className="border-2 border-gray-300 rounded mr-1 p-1"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Create Account</button>
+        <button type="submit" className="bg-amber-200 p-1 rounded border-gray-300 border-2">Create</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
