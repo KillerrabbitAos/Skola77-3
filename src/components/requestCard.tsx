@@ -1,8 +1,4 @@
-const status = {
-  0: "Created",
-  1: "Seen",
-  2: "Fulfilled",
-};
+import { status } from "@/config";
 
 export default function GroupCard({
   group,
