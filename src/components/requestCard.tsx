@@ -3,15 +3,17 @@ import { status } from "@/config";
 export default function GroupCard({
   group,
   onEdit,
+  className = "",
   onDelete,
 }: {
   group: { id: string; name: string; status: number };
   onEdit: () => void;
+  className?: string;
   onDelete?: () => void;
 }) {
   return (
     <div
-      className="border-2 rounded light:bg-gray-100 dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-150 mb-3 cursor-pointer"
+      className={"border-2 rounded light:bg-gray-100 dark:bg-gray-800 hover:scale-101 transition-transform border-gray-300 p-2 w-150 mb-3 cursor-pointer" + className}
       onClick={(e) => {
         if (!(e.target as HTMLElement).closest("button")) {
           onEdit();

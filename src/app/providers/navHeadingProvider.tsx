@@ -73,7 +73,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
           <div className="flex col-span-3 items-center justify-center">
             <div className="relative w-full">
               <SearchField ref={searchFieldRef} onChange={searchRequests} />
-              <div className="absolute top-full left-0 w-full z-10">
+              <div className="absolute top-full left-0 w-full mt-2 ml-2 z-10">
                 {resultedRequests &&
                   resultedRequests.map((request) => (
                     <GroupCard
