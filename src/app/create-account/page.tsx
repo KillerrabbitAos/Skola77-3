@@ -43,6 +43,7 @@ export default function CreateAccount() {
   useEffect(() => {
     setLoading(false);
   }, []);
+  
   if (loading || !user) return <div>laddar</div>;
 
   if (user.role !== "admin") {
