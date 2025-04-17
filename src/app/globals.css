@@ -14,11 +14,7 @@ body {
 [data-theme="classic"] body {
   background-color: #f2f2f2;
 }
-
-[data-theme="unicorn"],
-[data-theme="unicorn"] body {
-  background: rgb(236, 188, 196);
-  h1 {
+[data-theme="unicorn"] div{
     margin-top: 0px;
     margin-bottom: 10px;
     font-family: sans-serif;
@@ -37,7 +33,13 @@ body {
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
+}
+[data-theme="unicorn"],
+[data-theme="unicorn"] body {
+  background: rgb(236, 188, 196);
+
+    
+
 }
 
 [data-theme="dark"],
