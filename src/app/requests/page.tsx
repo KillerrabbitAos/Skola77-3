@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Group } from "@prisma/client";
+import { Request } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import GroupCard from "@/components/requestCard";
 import { useGroupStore } from "@/lib/store";
@@ -14,7 +14,7 @@ function Page() {
   const setGroupsStore = useGroupsStore((state) => state.setGroups);
   const clearSelectedGroups = useGroupsStore((state) => state.clearGroups);
 
-  const [groups, setGroups] = useState<Group[] | []>(storedGroups || null);
+  const [groups, setGroups] = useState<Request[] | []>(storedGroups || null);
 
   const router = useRouter();
 
@@ -24,7 +24,7 @@ function Page() {
     router.replace("/create-request");
   }
 
-  function changeUrl(group: Group) {
+  function changeUrl(group: Request) {
     useGroupStore.getState().setSelectedGroup(group);
     router.replace(`/request?id=${group.id}`);
   }
@@ -38,7 +38,7 @@ function Page() {
     setGroups(groups);
   }
 
-  async function deleteGroup(group: Group) {
+  async function deleteGroup(group: Request) {
     const response = await fetch(`/api/groups?id=${group.id}`, {
       method: "DELETE",
     });

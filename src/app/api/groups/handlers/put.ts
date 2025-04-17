@@ -23,11 +23,11 @@ export async function PUT(request: Request) {
 
     try {
         if (!id) {
-            await prisma.group.create({
+            await prisma.request.create({
                 data: group
             });
         }
-        await prisma.group.update({
+        await prisma.request.update({
             where: { id: id, userId: userId },
             data: group
         });

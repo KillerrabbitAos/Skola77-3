@@ -29,7 +29,7 @@ model User {
 
   UserPreference UserPreference[]
 
-  Group Group[]
+  Request Request[]
 
 }
 
@@ -97,11 +97,11 @@ model UserPreference {
   updatedAt DateTime @updatedAt
 }
 
-model Group {
+model Request {
   id      String   @id @default(cuid())
   userId  String
   name    String
-  members Int      @default(0)
+  status  Int      @default(0)
   body    String   @default("")
 
   createdAt DateTime @default(now())

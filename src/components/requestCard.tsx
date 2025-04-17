@@ -5,7 +5,7 @@ export default function GroupCard({
   onEdit,
   onDelete,
 }: {
-  group: { id: string; name: string; members: number };
+  group: { id: string; name: string; status: number };
   onEdit: () => void;
   onDelete: () => void;
 }) {
@@ -23,7 +23,7 @@ export default function GroupCard({
           {group.name}
         </div>
         <div className="flex items-center">
-          Status: {status[group.members as keyof typeof status]}
+          Status: {status[group.status as keyof typeof status]}
         </div>
       </div>
       <div className="grid grid-cols-2 gap-2">

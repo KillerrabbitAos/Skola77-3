@@ -22,7 +22,7 @@ export async function DELETE(request: Request) {
     }
 
     try {
-        await prisma.group.delete({
+        await prisma.request.delete({
             where: {userId: userId, id}
         });
     } catch (error) {

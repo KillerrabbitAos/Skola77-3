@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     }
 
     try {
-        const group = await prisma.group.create({
+        const group = await prisma.request.create({
             data: {
                 name: name,
                 userId: userId,

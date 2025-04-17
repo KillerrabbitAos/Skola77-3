@@ -18,7 +18,7 @@ export async function GET(req: Request) {
 
     if (id) {
         try {
-            const group = await prisma.group.findUnique({
+            const group = await prisma.request.findUnique({
                 where: { id: id, userId: userId },
             });
 
@@ -29,7 +29,7 @@ export async function GET(req: Request) {
         }
     }
     try {
-        const groups = await prisma.group.findMany({
+        const groups = await prisma.request.findMany({
             where: { userId: userId },
         });
 
