@@ -7,9 +7,6 @@ import { Group } from "@prisma/client";
 import { useDynamicInterval } from "@/hooks/useDynamicInterval";
 import { groupFetchIntervalSteps } from "@/config";
 import { useTheme } from "next-themes";
-import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import RequestBodyEditor from "@/components/requestBodyEditor";
 
 export default function Page() {
@@ -20,8 +17,6 @@ export default function Page() {
   const clearSelectedGroup = useGroupStore((state) => state.clearSelectedGroup);
   const [group, setGroup] = useState<Group | null>(storedGroup || null);
   const { theme } = useTheme();
-
-  const editorRef = useRef<Editor>(null);
 
   async function updateGroup(updatedGroup: Group) {
     try {
