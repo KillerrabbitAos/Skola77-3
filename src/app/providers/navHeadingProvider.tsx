@@ -71,7 +71,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
             {window.location.pathname !== "/" ? (
               <LeftArrowButton onClick={() => router.replace("/")} />
             ) : (
-              <div className="flex items-center justify-center"><img className="h-[35px]" src="https://swelib.com/logo.png" /></div>
+              <div className="flex p-1 px-2 rounded bg-[#121212] items-center justify-center"><img className="light:h-[27px] dark:h-[35px]" src="https://swelib.com/logo.png" /></div>
             )}
           </div>
           <div
