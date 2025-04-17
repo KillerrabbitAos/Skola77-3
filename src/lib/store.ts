@@ -1,9 +1,9 @@
 import { create } from 'zustand';
-import { Group } from '@prisma/client';
+import { Request } from '@prisma/client';
 
 interface GroupState {
-  selectedGroup: Group | null;
-  setSelectedGroup: (group: Group) => void;
+  selectedGroup: Request | null;
+  setSelectedGroup: (group: Request) => void;
   clearSelectedGroup: () => void;
 }
 
@@ -14,8 +14,8 @@ export const useGroupStore = create<GroupState>((set) => ({
 }));
 
 interface GroupsState {
-  groups: Group[];
-  setGroups: (groups: Group[]) => void;
+  groups: Request[];
+  setGroups: (groups: Request[]) => void;
   clearGroups: () => void;
 }
 
