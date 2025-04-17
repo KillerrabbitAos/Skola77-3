@@ -28,7 +28,7 @@ const Settings: React.FC = () => {
                 <ThemeSwitcher/>
             </div>
             {theme === "unicorn" && <img
-            className='mx-auto'
+            className='mx-auto border border-pink-400 !border-10'
                 src="/astral-unicorn.jpg"
                 alt="/--/o-"
                 width={500}

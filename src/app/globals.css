@@ -15,7 +15,7 @@ body {
   background-color: #f2f2f2;
 }
 
-[data-theme="unicorn"] button, select, input {
+[data-theme="unicorn"] button, select, input, img {
     border: #e95c8b solid 2px;
 
 }
