@@ -71,13 +71,16 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
             {window.location.pathname !== "/" ? (
               <LeftArrowButton onClick={() => router.replace("/")} />
             ) : (
-              <div className="flex p-1 px-2 rounded bg-[#121212] items-center justify-center"><img className="light:h-[27px] dark:h-[35px]" src="https://swelib.com/logo.png" /></div>
+              <div className="flex p-1 px-2 rounded bg-[#121212] items-center justify-center">
+                <img
+                  className="light:h-[27px] dark:h-[35px]"
+                  src="https://swelib.com/logo.png"
+                />
+              </div>
             )}
           </div>
           <div
-            className={` flex col-span-${
-              window.location.href === "/" ? 6 : 5
-            } items-center justify-center"`}
+            className={`flex col-span-5 items-center justify-center"`}
           >
             <div className="relative w-full">
               <SearchField ref={searchFieldRef} onChange={searchRequests} />

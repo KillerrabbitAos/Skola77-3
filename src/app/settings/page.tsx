@@ -25,6 +25,13 @@ const Settings: React.FC = () => {
                 <h2 className="text-xl font-semibold mb-4">Preferences</h2>
                 <ThemeSwitcher/>
             </div>
+            <img
+            className='mx-auto'
+                src="/astral-unicorn.jpg"
+                alt="/--/o-"
+                width={500}
+                height={500}
+            />
         </div>
     );
 };
