@@ -36,26 +36,17 @@ export default function Home() {
   const renderContent = () => {
     return (
       <>
-        <div className={"mx-1"}>Dev</div>
-        <button
-          onClick={redirectToGroupsPage}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 transition mx-1"
-        >
-          Go to Requests
-        </button>
-        <button
-          onClick={redirectToSettingsPage}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 transition"
-        >
-          Go to Settings
-        </button>
+        
         {user?.role === "admin" && (
+          <>
+          <div className={"mx-1"}>Dev</div>
           <button
             onClick={redirectToAccountCreator}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400 mx-1 transition"
           >
             Go to Account Creator
           </button>
+          </>
         )}
       </>
     );

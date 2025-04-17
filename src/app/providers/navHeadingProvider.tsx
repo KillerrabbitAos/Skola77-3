@@ -65,15 +65,23 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="h-20 flex items-center">
-        <div className="grid grid-cols-5 w-full">
+      <div className="h-20 ml-5 flex items-center">
+        <div className="grid grid-cols-10 w-full">
           <div className="flex items-center justify-start">
-            <LeftArrowButton onClick={() => router.replace("/")} />
+            {window.location.pathname !== "/" ? (
+              <LeftArrowButton onClick={() => router.replace("/")} />
+            ) : (
+              <div className="flex items-center justify-center"><img className="h-[35px]" src="https://swelib.com/logo.png" /></div>
+            )}
           </div>
-          <div className="flex col-span-3 items-center justify-center">
+          <div
+            className={` flex col-span-${
+              window.location.href === "/" ? 6 : 5
+            } items-center justify-center"`}
+          >
             <div className="relative w-full">
               <SearchField ref={searchFieldRef} onChange={searchRequests} />
-              <div className="absolute top-full left-0 w-full mt-2 ml-2 z-10">
+              <div className="absolute top-full light:bg-white left-0 w-full mt-2 ml-2 z-10">
                 {resultedRequests &&
                   resultedRequests.map((request) => (
                     <GroupCard
@@ -85,8 +93,37 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </div>
-          <div className="flex justify-end items-center">
-            <SmallProfilePicture user={user} />
+
+          <div className="flex col-span-4 items-center justify-end">
+            <div className="flex flex-grow justify-center items-center">
+              <div className="flex gap-12">
+                <div>
+                  <button
+                    onClick={() => {
+                      router.replace("/requests");
+                      resetSearchField();
+                    }}
+                    className="h-[35px] w-30 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
+                  >
+                    Requests
+                  </button>
+                </div>
+                <div>
+                  <button
+                    onClick={() => {
+                      router.replace("/settings");
+                      resetSearchField();
+                    }}
+                    className="h-[35px] w-30 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
+                  >
+                    Settings
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-end items-center">
+              <SmallProfilePicture user={user} />
+            </div>
           </div>
         </div>
       </div>
