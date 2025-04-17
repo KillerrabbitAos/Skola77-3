@@ -93,13 +93,13 @@ export default function Page() {
           updateGroup(updatedGroup).catch(console.error);
         }}
       />
-      <div className="mx-1 max-w-200">
+      <div className="mx-1 max-w-200 ">
         <RequestBodyEditor
           onChange={handleEditorChange}
           initialValue={group.body || defaultEditorState}
         />
         <button
-          className="p-4 mt-1 bg-gray-300 rounded text-black w-full"
+          className="p-4 mt-1 bg-gray-200 light:border-gray-500 light:border-2 rounded text-black w-full"
           onClick={() => {
             setSaved(true);
             setTimeout(() => setSaved(false), 1070);
