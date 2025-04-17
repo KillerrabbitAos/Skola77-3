@@ -19,7 +19,7 @@ function Page() {
   const router = useRouter();
 
   router.prefetch("/create-request");
-  
+
   function redirectToGroupCreator() {
     router.replace("/create-request");
   }

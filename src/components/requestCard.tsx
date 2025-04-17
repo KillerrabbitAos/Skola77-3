@@ -7,7 +7,7 @@ export default function GroupCard({
 }: {
   group: { id: string; name: string; status: number };
   onEdit: () => void;
-  onDelete: () => void;
+  onDelete?: () => void;
 }) {
   return (
     <div
@@ -36,15 +36,17 @@ export default function GroupCard({
         >
           View and Edit
         </div>
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-          className="w-full h-full bg-red-300 dark:text-black light:text-gray-800 rounded hover:bg-red-400"
-        >
-          Delete
-        </button>
+        {onDelete && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            className="w-full h-full bg-red-300 dark:text-black light:text-gray-800 rounded hover:bg-red-400"
+          >
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );

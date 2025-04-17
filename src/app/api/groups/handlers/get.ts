@@ -25,9 +25,34 @@ export async function GET(req: Request) {
             return NextResponse.json(group);
         } catch (error) {
             console.error("Error retrieving groups:", error);
-            return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+            return NextResponse.json(
+                { error: "Internal server error" },
+                { status: 500 }
+            );
         }
     }
+    const query = searchParams.get("q");
+    if (query) {
+        try {
+            const groups = await prisma.request.findMany({
+                where: {
+                    userId: userId,
+                    name: {
+                        contains: query || undefined,
+                        mode: "insensitive",
+                    },
+                },
+            });
+            return NextResponse.json(groups);
+        } catch (error) {
+            console.error("Error retrieving groups:", error);
+            return NextResponse.json(
+                { error: "Internal server error" },
+                { status: 500 }
+            );
+        }
+    }
+
     try {
         const groups = await prisma.request.findMany({
             where: { userId: userId },
@@ -36,6 +61,9 @@ export async function GET(req: Request) {
         return NextResponse.json({ groups });
     } catch (error) {
         console.error("Error retrieving groups:", error);
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+        return NextResponse.json(
+            { error: "Internal server error" },
+            { status: 500 }
+        );
     }
 }
