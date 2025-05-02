@@ -18,7 +18,7 @@ const ThemeSwitcher = () => {
       }
     };
 
-    loadTheme();
+    //loadTheme();
   }, [setTheme]);
 
   const onThemeSelect = async (e: React.ChangeEvent<HTMLSelectElement>) => {
