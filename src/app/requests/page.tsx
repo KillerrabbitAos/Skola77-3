@@ -58,7 +58,7 @@ function Page() {
     a.name.localeCompare(b.name)
   );
   return (
-    <div className={"ml-2"}>
+    <div className={"ml-2 mt-2"}>
       <div className="flex items-center mb-3">
         <h1 className={"text-3xl mr-4"}>Requests</h1>{" "}
         <button

@@ -8,6 +8,7 @@ import { useDynamicInterval } from "@/hooks/useDynamicInterval";
 import { defaultEditorState, groupFetchIntervalSteps } from "@/config";
 import { useTheme } from "next-themes";
 import RequestBodyEditor from "@/components/requestBodyEditor";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -17,6 +18,7 @@ export default function Page() {
   const clearSelectedGroup = useGroupStore((state) => state.clearSelectedGroup);
   const [group, setGroup] = useState<Request | null>(storedGroup || null);
   const { theme } = useTheme();
+  const router = useRouter();
 
   async function updateGroup(updatedGroup: Request) {
     try {

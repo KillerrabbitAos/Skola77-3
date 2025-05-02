@@ -99,7 +99,8 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
           <div className="flex col-span-4 items-center justify-end">
             <div className="flex flex-grow justify-center items-center">
-              <div className="flex gap-12">
+              <div className="grid grid-cols-5">
+                <div></div>
                 <div>
                   <button
                     onClick={() => {
@@ -111,6 +112,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                     Requests
                   </button>
                 </div>
+                <div></div>
                 <div>
                   <button
                     onClick={() => {
@@ -124,7 +126,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
             </div>
-            <div className="flex justify-end items-center">
+            <div className="justify-center items-start">
               <SmallProfilePicture user={user} />
             </div>
           </div>
