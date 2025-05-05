@@ -65,7 +65,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="h-20 flex items-center">
+      <div className="h-20 flex ml-5 items-center">
         <div className="grid grid-cols-10 w-full">
           <div className="flex items-center justify-start">
             {window.location.pathname !== "/" ? (
