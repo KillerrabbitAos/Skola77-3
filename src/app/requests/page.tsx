@@ -39,12 +39,13 @@ function Page() {
   }
 
   async function deleteGroup(group: Request) {
+    setGroups((prevGroups) => prevGroups.filter((g) => g.id !== group.id));
     const response = await fetch(`/api/groups?id=${group.id}`, {
       method: "DELETE",
     });
     if (!response.ok) return;
 
-    setGroups((prevGroups) => prevGroups.filter((g) => g.id !== group.id));
+    
   }
 
   useEffect(() => {
