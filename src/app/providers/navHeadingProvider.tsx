@@ -126,8 +126,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                 </div>
               </div>
             </div>
-            <div className="justify-center items-start">
-              <SmallProfilePicture user={user} />
+            <div>
             </div>
           </div>
         </div>
