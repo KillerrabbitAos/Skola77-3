@@ -28,7 +28,7 @@ function Page() {
         <p className="text-gray-600">{user.email}</p>
       </div>
       <div className="flex flex-col items-center justify-center mt-4">
-        <p className="text-gray-600">{}</p>
+        <p className="text-gray-600">{user.SBucks}</p>
         <button
           className="bg-amber-100 p-5 rounded text-black"
           onClick={() => signOut()}
