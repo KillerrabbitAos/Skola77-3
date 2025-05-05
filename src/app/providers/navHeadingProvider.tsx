@@ -65,7 +65,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="h-20 ml-5 flex items-center">
+      <div className="h-20 flex items-center">
         <div className="grid grid-cols-10 w-full">
           <div className="flex items-center justify-start">
             {window.location.pathname !== "/" ? (
@@ -119,7 +119,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                       router.replace("/settings");
                       resetSearchField();
                     }}
-                    className="h-[35px] w-20 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
+                    className="h-[35px] w-30 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
                   >
                     Settings
                   </button>
