@@ -14,6 +14,7 @@ function Page() {
   const setSelectedGroup = useGroupStore((state) => state.setSelectedGroup);
 
   async function createGroup() {
+    setCreatingGroup(true);
     try {
       const response = await fetch("/api/groups", {
         method: "POST",
@@ -24,6 +25,7 @@ function Page() {
       if (!id) return;
       router.replace("/request?id=" + String(id) + "");
     } catch (e) {
+      setCreatingGroup(false);
       console.error(e);
     }
   }
