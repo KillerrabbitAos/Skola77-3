@@ -119,7 +119,7 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
                       router.replace("/settings");
                       resetSearchField();
                     }}
-                    className="h-[35px] w-30 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
+                    className="h-[35px] w-20 bg-gray-600 text-gray-200 rounded light:hover:bg-gray-700"
                   >
                     Settings
                   </button>
