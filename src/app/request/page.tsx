@@ -100,15 +100,7 @@ export default function Page() {
           onChange={handleEditorChange}
           initialValue={group.body || defaultEditorState}
         />
-        <button
-          className="p-4 mt-1 bg-gray-200 light:border-gray-500 light:border-2 rounded text-black w-full"
-          onClick={() => {
-            setSaved(true);
-            setTimeout(() => setSaved(false), 1070);
-          }}
-        >
-          {saved ? "Saved" : "Save"}
-        </button>
+        
       </div>
     </div>
   );
