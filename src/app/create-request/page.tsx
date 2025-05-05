@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 function Page() {
   const [mounted, setMounted] = useState(false);
   const [groupName, setGroupName] = useState("");
+  const [ creatingGroup, setCreatingGroup ] = useState(false)
   const [height, setHeight] = useState(window.innerHeight);
   const router = useRouter();
 
@@ -70,10 +71,10 @@ function Page() {
         />
 
         <button
-          onClick={createGroup}
+          onClick={creatingGroup ? () => {} : createGroup}
           className="cursor-pointer w-full classic:bg-green-500 classic:text-white light:text-gray-700 p-2 border-1 dark:text-white classic:hover:bg-green-600 rounded"
         >
-          Create
+          {creatingGroup ? "Creating..." : "Create"}
         </button>
       </div>
     </div>
