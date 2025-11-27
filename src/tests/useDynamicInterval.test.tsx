@@ -4,7 +4,7 @@ import { act } from 'react';
 
 type Step = [number, number]; 
 
-// Disclaimer: 
+// Disclaimer:  
 // This is an integration test for the useDynamicInterval hook.
 // It is not a unit test.
 // That means I get cut some slack.
