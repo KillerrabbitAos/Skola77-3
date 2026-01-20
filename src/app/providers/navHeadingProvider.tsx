@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { SmallProfilePicture } from "@/components/smallProfilePicture";
 import { useSession } from "next-auth/react";
-import { SignInPrompt } from "@/components/signInPrompt";
 import { LeftArrowButton } from "@/components/leftArrowButton";
 import { SearchField } from "@/components/searchField";
 import GroupCard from "@/components/requestCard";
 import { useRouter } from "next/navigation";
 import { Request } from "@prisma/client";
 import { useGroupsStore, useGroupStore } from "@/lib/store";
+import SignInPage from "../signin/page";
 
 function NavHeadingProvider({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
@@ -61,7 +61,10 @@ function NavHeadingProvider({ children }: { children: React.ReactNode }) {
   }, [status]);
 
   if (loading) return null;
-  if (!user) return <SignInPrompt />;
+  if (!user) {
+    
+    return <SignInPage />;
+  };
 
   return (
     <>

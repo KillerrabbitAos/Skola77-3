@@ -54,6 +54,7 @@ export function SignInPrompt() {
         <label className="block mb-2 text-sm font-medium text-gray-700">
           Password
         </label>
+
         <input
           type="password"
           value={password}
@@ -64,12 +65,12 @@ export function SignInPrompt() {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+          className="w-full mb-1 bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
         >
           Sign In
         </button>
 
-        <div className="mt-4">
+        <div className="mt-2 mb-3">
           <button
             type="button"
             onClick={() => signIn('google', { callbackUrl })}
@@ -78,6 +79,8 @@ export function SignInPrompt() {
             Sign In with Google
           </button>
         </div>
+        <div className='cursor-pointer hover:underline text-gray-700'><a href="/register">Don't have an account? Register</a></div>
+
       </form>
     </div>
   );
